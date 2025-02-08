@@ -1,22 +1,20 @@
 package tn.esprit.test.entity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class DetailComposant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetailComposant;
 
     private Float imc;
+    @OneToOne
+    @JoinColumn(name = "composant_id") // Clé étrangère dans la table DetailComposant
+    private Composant composant;
 
     @Enumerated(EnumType.STRING)
     private TypeComposant typeComposant;
 
-    @OneToOne
-    @JoinColumn(name = "composant_id")
-    private Composant composant;
 }

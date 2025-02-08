@@ -1,11 +1,11 @@
 package tn.esprit.test.entity;
-import lombok.*;
 import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Composant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,9 @@ public class Composant {
     private String nomComposant;
     private Float prix;
 
-    @OneToOne
-    @JoinColumn(name = "menu_id")
+    @ManyToOne
     private Menu menu;
+
+    @OneToOne(mappedBy = "composant")
+    private DetailComposant detailsComposant;
 }

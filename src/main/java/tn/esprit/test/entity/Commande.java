@@ -1,11 +1,12 @@
 package tn.esprit.test.entity;
-import lombok.*;
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.time.LocalDate;
+
+
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +19,11 @@ public class Commande {
     private Long note;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
     private Client client;
+
+
+    @ManyToOne
+    private Menu menu;
+
+
 }
